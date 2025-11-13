@@ -6,13 +6,15 @@
 
 # 设置默认密码（可根据需要修改）
 DEFAULT_PASSWORD="Admin@2025"
-HOSTNAME=host01
+HOSTNAME=openGauss-server01
 
 # 全局变量
 SELECTED_VERSION=""
 SELECTED_URL=""
 SYSTEM_ARCH=""
 SYSTEM_OS_VERSION=""
+#脚本执行目录，也是文件下载的默认路径
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # 内置版本和URL信息
 declare -A VERSION_INFO
@@ -406,6 +408,10 @@ show_version_menu
 # 构建下载链接
 prepare_download_url
 
+# 切换到脚本目录
+
+cd "$SCRIPT_DIR"
+
 # 下载安装包
 download_opengauss
 
@@ -471,7 +477,7 @@ cd /opt/software/openGauss
 # 解压安装包
 echo "步骤4: 解压openGauss安装包..."
 DOWNLOADED_FILE=$(basename "$SELECTED_URL")
-tar -zxf ~/"$DOWNLOADED_FILE"
+tar -zxf "$SCRIPT_DIR/$DOWNLOADED_FILE"
 
 # 根据版本动态解压OM包
 echo "正在检测OM包..."
