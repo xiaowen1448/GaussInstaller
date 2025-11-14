@@ -19,6 +19,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # 内置版本和URL信息
 declare -A VERSION_INFO
 VERSION_INFO=(
+    ["7.0.0-RC2"]="7.0.0-RC2"
     ["7.0.0-RC1"]="7.0.0-RC1"
     ["6.0.2(LTS)"]="6.0.2"
     ["6.0.0(LTS)"]="6.0.0"
@@ -198,6 +199,7 @@ show_version_menu() {
     
     # 显示所有支持的版本（与VERSION_INFO保持一致）
     local versions=(
+        "7.0.0-RC2"
         "7.0.0-RC1"
         "6.0.2(LTS)"
         "6.0.0(LTS)"
@@ -210,6 +212,7 @@ show_version_menu() {
     
     # 添加版本描述信息
     local descriptions=(
+        "最新候选发布版本，包含新特性"
         "最新候选发布版本，包含新特性"
         "最新长期支持版本，推荐生产环境使用"
         "稳定长期支持版本"

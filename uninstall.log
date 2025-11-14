@@ -1,0 +1,45 @@
+[root@localhost ~]# su - omm
+Last login: Fri Nov 14 09:24:36 CST 2025 on pts/0
+
+
+Welcome to 5.10.0-216.0.0.115.oe2203sp4.x86_64
+
+System information as of time:  Fri Nov 14 09:25:08 AM CST 2025
+
+System load:    0.34
+Memory used:    43.1%
+Swap used:      14.8%
+Usage On:       9%
+IP address:     192.168.119.136
+Users online:   2
+To run a command as administrator(user "root"),use "sudo <command>".
+[omm@openGauss-server01 ~]$ gs_uninstall --delete-data
+Checking uninstallation.
+Successfully checked uninstallation.
+Stopping the cluster.
+Successfully stopped the cluster.
+Successfully deleted instances.
+Uninstalling application.
+Successfully uninstalled application.
+Uninstallation succeeded.
+[omm@openGauss-server01 ~]$ exit
+logout
+[root@localhost ~]# /opt/software/openGauss/script/gs_postuninstall -U omm -X /opt/software/openGauss/cluster_config.xml --delete-user
+Parsing the configuration file.
+Successfully parsed the configuration file.
+Check log file path.
+Successfully checked log file path.
+Checking unpreinstallation.
+Successfully checked unpreinstallation.
+Deleting the instance's directory.
+Successfully deleted the instance's directory.
+Deleting the temporary directory.
+Successfully deleted the temporary directory.
+Deleting software packages and environmental variables of the local node.
+Successfully deleted software packages and environmental variables of the local nodes.
+Deleting local OS user.
+Successfully deleted local OS user.
+Deleting local node's logs.
+Successfully deleted local node's logs.
+Successfully cleaned environment.
+[root@localhost ~]#
