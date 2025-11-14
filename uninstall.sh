@@ -242,15 +242,24 @@ cleanup_environment() {
         fi
     done
     
-    # 如果找到gs_postuninstall和配置文件，尝试执行
-    if [ -n "$GS_POSTUNINSTALL" ] && [ -n "$CONFIG_FILE" ]; then
+    # 检查omm用户是否存在
+    local OMM_USER_EXISTS=false
+    id -u omm >/dev/null 2>&1 && OMM_USER_EXISTS=true
+    
+    # 如果找到gs_postuninstall和配置文件，并且omm用户存在，才尝试执行gs_postuninstall
+    if [ "$OMM_USER_EXISTS" = true ] && [ -n "$GS_POSTUNINSTALL" ] && [ -n "$CONFIG_FILE" ]; then
         print_info "执行gs_postuninstall清理环境..."
         $GS_POSTUNINSTALL -U omm -X $CONFIG_FILE --delete-user || {
             print_warning "gs_postuninstall执行失败，尝试手动清理基本环境..."
             manual_cleanup
         }
     else
-        print_warning "无法找到gs_postuninstall脚本或配置文件，直接进行手动清理"
+        # 如果omm用户不存在或找不到gs_postuninstall/配置文件，直接进行手动清理
+        if [ "$OMM_USER_EXISTS" = false ]; then
+            print_warning "omm用户不存在，跳过gs_postuninstall，直接进行手动清理"
+        else
+            print_warning "无法找到gs_postuninstall脚本或配置文件，直接进行手动清理"
+        fi
         manual_cleanup
     fi
     
