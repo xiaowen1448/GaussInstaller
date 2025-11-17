@@ -459,7 +459,7 @@ echo "========================================="
 
 # 安装必要工具
 echo "步骤1: 安装必要工具..."
-yum install tar expect unixODBC -y
+yum install tar expect libaio-devel readline-devel expect libedit-devel libxml2-devel lz4-devel numactl-devel unixODBC-devel java-1.8.0-openjdk-devel -y
 
 # 创建安装目录
 echo "步骤2: 创建安装目录..."
