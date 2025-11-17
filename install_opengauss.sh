@@ -459,7 +459,7 @@ echo "========================================="
 
 # 安装必要工具
 echo "步骤1: 安装必要工具..."
-yum install tar expect -y
+yum install tar expect unixODBC -y
 
 # 创建安装目录
 echo "步骤2: 创建安装目录..."
